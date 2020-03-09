@@ -46,7 +46,7 @@
 <repositories>
     <repository>
         <id>idlink</id>
-        <url>https://github.com/idlink-team/idlink-ig-client-sdk/tree/master/repo</url>
+        <url>https://raw.githubusercontent.com/idlink-team/idlink-ig-client-sdk/master/repo</url>
     </repository>
 </repositories>
     <properties>
