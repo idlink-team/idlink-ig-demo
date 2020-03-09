@@ -34,7 +34,7 @@
         <dependency>
             <groupId>idlink</groupId>
             <artifactId>idlink-ig-client</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -43,12 +43,12 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-<repositories>
-    <repository>
-        <id>idlink</id>
-        <url>https://raw.githubusercontent.com/idlink-team/idlink-ig-client-sdk/master/repo</url>
-    </repository>
-</repositories>
+    <repositories>
+        <repository>
+            <id>idlink</id>
+            <url>https://raw.githubusercontent.com/idlink-team/idlink-ig-client-sdk/master/repo</url>
+        </repository>
+    </repositories>
     <properties>
         <java.version>1.8</java.version>
         <nimbus-jose-jwt>5.4</nimbus-jose-jwt>
