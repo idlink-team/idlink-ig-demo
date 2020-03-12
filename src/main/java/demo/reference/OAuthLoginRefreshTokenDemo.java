@@ -2,6 +2,7 @@ package demo.reference;
 
 import com.google.gson.Gson;
 import demo.tools.AuthApiToken;
+import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.AuthenticationApi;
 import io.swagger.client.ApiException;
 
@@ -15,12 +16,12 @@ public class OAuthLoginRefreshTokenDemo {
     /**
      * Client id
      */
-    public static final String clientId = "gig";
+    public static final String clientId = PropertiesUtils.getApiClientId();
 
     /**
      * Client secret
      */
-    public static final String clientSecret = "ad398u21ijw3s9w393";
+    public static final String clientSecret = PropertiesUtils.getApiSecret();
 
     public static void main(String[] args) throws ApiException {
         // Build authorization header
