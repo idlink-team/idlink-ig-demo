@@ -40,12 +40,12 @@ public class D_UserPairDevice {
     /**
      * Client id
      */
-    public static final String clientId = PropertiesUtils.getApiClientId();
+    public static final String clientId = PropertiesUtils.getClientId();
 
     /**
      * Client secret
      */
-    public static final String clientSecret = PropertiesUtils.getApiSecret();
+    public static final String clientSecret = PropertiesUtils.getClientSecret();
 
     public static void main(String[] args) throws ApiException {
         // Build token before calling each api
