@@ -1,6 +1,7 @@
 package demo.scenario;
 
 import demo.tools.AdminApiToken;
+import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.AdminApi;
 import idlink.ig.client.model.*;
 import io.swagger.client.ApiException;
@@ -23,12 +24,12 @@ public class A_AppCallScenario {
     /**
      * Api client id
      */
-    public static String apiClientId = "gig";
+    public static String apiClientId = PropertiesUtils.getApiClientId();
 
     /**
      * Admin api secret
      */
-    public static String apiSecret = "dakjdiewsl2854o23";
+    public static String apiSecret = PropertiesUtils.getApiSecret();
 
     /**
      * User to test, please change it when "Kevin" already exists

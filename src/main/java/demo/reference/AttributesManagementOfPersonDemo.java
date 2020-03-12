@@ -1,6 +1,7 @@
 package demo.reference;
 
 import demo.tools.AdminApiToken;
+import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.AdminApi;
 import idlink.ig.client.model.*;
 import io.swagger.client.ApiException;
@@ -12,11 +13,11 @@ public class AttributesManagementOfPersonDemo {
     /**
      * Api client id
      */
-    public static String apiClientId = "gig";
+    public static String apiClientId = PropertiesUtils.getApiClientId();
     /**
      * Admin api secret
      */
-    public static String apiSecret = "dakjdiewsl2854o23";
+    public static String apiSecret = PropertiesUtils.getApiSecret();
 
     public static void main(String[] args) throws ApiException {
         // Build token before calling each api

@@ -2,6 +2,7 @@ package demo.scenario;
 
 import demo.tools.AdminApiToken;
 import demo.tools.AuthApiToken;
+import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.AdminApi;
 import idlink.ig.client.api.AuthenticationApi;
 import idlink.ig.client.model.*;
@@ -29,12 +30,12 @@ public class D_UserPairDevice {
     /**
      * Api client id
      */
-    public static String apiClientId = "gig";
+    public static String apiClientId = PropertiesUtils.getApiClientId();
 
     /**
      * Admin api secret
      */
-    public static String apiSecret = "dakjdiewsl2854o23";
+    public static String apiSecret = PropertiesUtils.getApiSecret();
 
     /**
      * Client id
