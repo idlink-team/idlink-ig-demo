@@ -1,6 +1,6 @@
 package demo.tools;
 
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
 
 /**
  * @author IDLINK
@@ -18,7 +18,7 @@ public class AuthApiToken {
     }
 
     private static String encoder(byte[] content) {
-        String result = (new BASE64Encoder()).encodeBuffer(content);
+        String result = Base64.getEncoder().encodeToString(content);
         return result.replaceAll("\r|\n", "");
     }
 }
