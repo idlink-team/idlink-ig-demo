@@ -3,6 +3,7 @@ package demo.reference;
 import com.google.gson.Gson;
 import demo.tools.AdminApiToken;
 import demo.tools.AuthApiToken;
+import demo.tools.JwtParseUtils;
 import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.AdminApi;
 import idlink.ig.client.api.AuthenticationApi;
@@ -54,11 +55,13 @@ public class AdminExchangeAccessTokenDemo {
         AdminExchangeAccessTokenRequest request = new AdminExchangeAccessTokenRequest();
         request.accessToken(access_token);
         Map clientMetaDataMap = new HashMap<>();
-        clientMetaDataMap.put("ididid", "123");
+        clientMetaDataMap.put("scope", "123");
         request.clientMetadata(clientMetaDataMap);
         String newAccessToken = adminApi.adminExchangeAccessToken(request, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         // Exchange result
         System.out.println("exchanged access token: ");
         System.out.println(newAccessToken);
+
+        JwtParseUtils.printJwt(newAccessToken);
     }
 }
