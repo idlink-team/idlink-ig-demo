@@ -7,6 +7,7 @@ import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.AdminApi;
 import idlink.ig.client.api.AuthenticationApi;
 import idlink.ig.client.model.AdminExchangeAccessTokenRequest;
+import idlink.ig.client.model.AdminInitialLoginRequest;
 import io.swagger.client.ApiException;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,37 +19,35 @@ import java.util.Map;
 public class AdminExchangeAccessTokenDemo {
 
     /**
-     * Client id
+     * Api client id
      */
-    public static final String clientId = PropertiesUtils.getClientId();
+    public static String apiClientId = PropertiesUtils.getApiClientId();
 
     /**
-     * Client secret
+     * Admin api secret
      */
-    public static final String clientSecret = PropertiesUtils.getClientSecret();
+    public static String apiSecret = PropertiesUtils.getApiSecret();
 
     public static void main(String[] args) throws ApiException {
 
-        // Build authorization header
-        String authorization = AuthApiToken.build(clientId, clientSecret);
-
         // Build token before calling each admin api
-        AdminApiToken token = AdminApiToken.build(clientId, clientSecret);
+        AdminApiToken token = AdminApiToken.build(apiClientId, apiSecret);
 
         // Create Api Instances
         AuthenticationApi authApi = new AuthenticationApi();
         AdminApi adminApi = new AdminApi();
 
-        // Step1. Login with username & password
-        String oauth2Tokens = authApi.personLogin(authorization, "password", "435435vdf", null,
-                null, "Java39");
+        // Step1. Login with username & passpersonLoginword
+        AdminInitialLoginRequest loginRequest = new AdminInitialLoginRequest();
+        loginRequest.userType(AdminInitialLoginRequest.UserTypeEnum.PERSON).username("Java39").password("435435vdf");
+        String loginResult = adminApi.adminInitialLogin(loginRequest, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
 
         // Login result
-        System.out.println("Login successful and get OAuth tokens: ");
-        System.out.println(oauth2Tokens);
+        System.out.println("Login successful and get token: ");
+        System.out.println(loginResult);
 
         Gson gson = new Gson();
-        HashMap tokenMap = gson.fromJson(oauth2Tokens, HashMap.class);
+        HashMap tokenMap = gson.fromJson(loginResult, HashMap.class);
         String access_token = tokenMap.get("access_token").toString();
 
         // Step2. Exchange access token
@@ -57,9 +56,9 @@ public class AdminExchangeAccessTokenDemo {
         Map clientMetaDataMap = new HashMap<>();
         clientMetaDataMap.put("ididid", "123");
         request.clientMetadata(clientMetaDataMap);
-        String newToken = adminApi.adminExchangeAccessToken(request, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
+        String newAccessToken = adminApi.adminExchangeAccessToken(request, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         // Exchange result
-        System.out.println("Refresh new token: ");
-        System.out.println(newToken);
+        System.out.println("exchanged access token: ");
+        System.out.println(newAccessToken);
     }
 }
