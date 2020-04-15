@@ -12,12 +12,12 @@ public class IdPoolListDemo {
     /**
      *  Client id
      */
-    public static String clientId = PropertiesUtils.getClientId();
+    public static String clientId = PropertiesUtils.getTenantId();
 
     /**
      *  Client secret
      */
-    public static String clientSecret = PropertiesUtils.getClientSecret();
+    public static String clientSecret = PropertiesUtils.getTenantSecret();
 
     public static void main(String[] args) throws ApiException {
 
