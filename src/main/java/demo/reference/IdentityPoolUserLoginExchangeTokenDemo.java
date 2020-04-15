@@ -59,6 +59,7 @@ public class IdentityPoolUserLoginExchangeTokenDemo {
         String access_token;
         if ("OK".equals(adminInitialLoginResponse.getHttpStatus())) {
             System.out.println("Login Success");
+            System.out.println(adminInitialLoginResponse.getData());
             JsonObject jsonObject = new Gson().fromJson(adminInitialLoginResponse.getData(), JsonObject.class);
             access_token = jsonObject.get("access_token").getAsString();
             System.out.println("login data : ");
@@ -69,15 +70,14 @@ public class IdentityPoolUserLoginExchangeTokenDemo {
         }
         // Step 4. exchange Token and show userInfo
         AdminExchangeAccessTokenRequest exchangeAccessTokenRequest = new AdminExchangeAccessTokenRequest()
-                .putDynamicClaimItem("host","127.0.0.1")
+                .putDynamicClaimItem("host","192.168.0.1")  //refact claim
                 .accessToken(access_token);
         AdminExchangeAccessTokenResponse exchangeAccessTokenResponse = adminApi.adminExchangeAccessToken(exchangeAccessTokenRequest, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
 
         if ("OK".equals(exchangeAccessTokenResponse.getHttpStatus())) {
             System.out.println("Exchange Access_Token Success");
-            JsonObject jsonObject = new Gson().fromJson(adminInitialLoginResponse.getData(), JsonObject.class);
-            access_token = jsonObject.get("access_token").getAsString();
-            System.out.println("login data : ");
+            access_token = exchangeAccessTokenResponse.getData();
+            System.out.println("Exchange Access_Token : ");
             JwtParseUtils.printJwt(access_token);
         } else {
             System.out.println(initialLoginRequest);
