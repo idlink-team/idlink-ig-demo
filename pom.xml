@@ -39,7 +39,7 @@
         <dependency>
             <groupId>idlink</groupId>
             <artifactId>idlink-ig-client</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.5</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
