@@ -19,7 +19,9 @@ import io.swagger.client.ApiException;
  * 7. Exchange access token.
  * 8. Change password.
  * 9. User login again after change password.
- * 10.Delete user.
+ * 10.Update user.
+ * 11.User login again after update.
+ * 12.Delete user.
  */
 public class IdentityPoolOperateUserDemo {
 
@@ -68,8 +70,8 @@ public class IdentityPoolOperateUserDemo {
         }
         // Try to log in with the user name 'Tom', expected login failure because the user is disabled.
         userLogin(adminApi, token);
-        // 10. Delete user 'Tom'
-        AdminDeleteUserRequest adminDeleteUserRequest = new AdminDeleteUserRequest().username("Tom");
+        // 12. Delete user 'Tom2'
+        AdminDeleteUserRequest adminDeleteUserRequest = new AdminDeleteUserRequest().username("Tom2");
         AdminDeleteUserResponse adminDeleteUserResponse = adminApi.adminDeleteUser(adminDeleteUserRequest, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         if ("OK".equals(adminDeleteUserResponse.getHttpStatus())) {
             System.out.println("User 'Tom' deleted.");
@@ -114,7 +116,7 @@ public class IdentityPoolOperateUserDemo {
         }
         // 7. Exchange access token
         AdminExchangeAccessTokenRequest exchangeAccessTokenRequest = new AdminExchangeAccessTokenRequest()
-                .putDynamicClaimItem("host","127.0.0.1")
+                .putDynamicClaimItem("host","127.0.0.100")
                 .accessToken(access_token);
         AdminExchangeAccessTokenResponse exchangeAccessTokenResponse = adminApi.adminExchangeAccessToken(exchangeAccessTokenRequest,
                 token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
@@ -143,6 +145,23 @@ public class IdentityPoolOperateUserDemo {
                 token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         if ("OK".equals(adminInitialLoginResponse3.getHttpStatus())) {
             System.out.println("User 'Tom' login success after change password.");
+        }
+        // 10. Update user 'Tom' to 'Tom2'
+        AdminUpdateUserRequest updateUserRequest = new AdminUpdateUserRequest().putAttributesItem("username", "Tom2").username("Tom");
+        AdminUpdateUserResponse updateUserResponse = adminApi.adminUpdateUser(updateUserRequest, token.getX_API_CLIENT_ID(),
+                token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
+        if ("OK".equals(updateUserResponse.getHttpStatus())) {
+            System.out.println("Update user success.");
+        } else {
+            System.out.println(updateUserResponse);
+            return;
+        }
+        // 11. User login again after update
+        initialLoginRequest.username("Tom2");
+        AdminInitialLoginResponse adminInitialLoginResponse4 = adminApi.adminInitialLogin(initialLoginRequest,
+                token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
+        if ("OK".equals(adminInitialLoginResponse3.getHttpStatus())) {
+            System.out.println("User 'Tom2' login success after update.");
         }
     }
 }
