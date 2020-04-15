@@ -28,11 +28,11 @@ public class OAuthLoginVerifyTokenDemo {
         if(createUser(adminApi,token)){
             // Step 2. login by username&password get refresh_token
             AdminInitialLoginRequest initialLoginRequest = new AdminInitialLoginRequest()
-                    .putClientMetadataItem("host","127.0.0.1")
+                    .putDynamicClaimItem("host","127.0.0.1")
                     .username("Tom").password("sda142&h4j2");
             AdminInitialLoginResponse adminInitialLoginResponse = adminApi.adminInitialLogin(initialLoginRequest,
                     token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
-            String refresh_token = null;
+            String refresh_token;
             if("OK".equals(adminInitialLoginResponse.getHttpStatus())){
                 System.out.println("Login Success");
                 JsonObject jsonObject = new Gson().fromJson(adminInitialLoginResponse.getData(), JsonObject.class);

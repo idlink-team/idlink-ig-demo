@@ -51,7 +51,7 @@ public class IdentityPoolUserLoginExchangeTokenDemo {
 
         // Step 3. Login and show userInfo
         AdminInitialLoginRequest initialLoginRequest = new AdminInitialLoginRequest()
-                .putClientMetadataItem("host","127.0.0.1")
+                .putDynamicClaimItem("host","127.0.0.1")
                 .username("Tom").password("sda142&h4j2");
         AdminInitialLoginResponse adminInitialLoginResponse = adminApi.adminInitialLogin(initialLoginRequest,
                 token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
@@ -59,7 +59,6 @@ public class IdentityPoolUserLoginExchangeTokenDemo {
         String access_token;
         if ("OK".equals(adminInitialLoginResponse.getHttpStatus())) {
             System.out.println("Login Success");
-            System.out.println(adminInitialLoginResponse.getData());
             JsonObject jsonObject = new Gson().fromJson(adminInitialLoginResponse.getData(), JsonObject.class);
             access_token = jsonObject.get("access_token").getAsString();
             System.out.println("login data : ");
@@ -70,7 +69,7 @@ public class IdentityPoolUserLoginExchangeTokenDemo {
         }
         // Step 4. exchange Token and show userInfo
         AdminExchangeAccessTokenRequest exchangeAccessTokenRequest = new AdminExchangeAccessTokenRequest()
-                .putClientMetadataItem("host","127.0.0.1")
+                .putDynamicClaimItem("host","127.0.0.1")
                 .accessToken(access_token);
         AdminExchangeAccessTokenResponse exchangeAccessTokenResponse = adminApi.adminExchangeAccessToken(exchangeAccessTokenRequest, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
 
