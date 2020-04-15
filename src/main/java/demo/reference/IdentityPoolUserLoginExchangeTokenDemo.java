@@ -51,7 +51,7 @@ public class IdentityPoolUserLoginExchangeTokenDemo {
 
         // Step 3. Login and show userInfo
         AdminInitialLoginRequest initialLoginRequest = new AdminInitialLoginRequest()
-                .putDynamicClaimItem("host","127.0.0.99")
+                .putDynamicClaimItem("host","127.0.0.1")
                 .username("Tom").password("sda142&h4j2");
         AdminInitialLoginResponse adminInitialLoginResponse = adminApi.adminInitialLogin(initialLoginRequest,
                 token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
@@ -70,7 +70,7 @@ public class IdentityPoolUserLoginExchangeTokenDemo {
         }
         // Step 4. exchange Token and show userInfo
         AdminExchangeAccessTokenRequest exchangeAccessTokenRequest = new AdminExchangeAccessTokenRequest()
-                .putDynamicClaimItem("host","127.0.0.1")
+                .putDynamicClaimItem("host","192.168.0.1")  //refact claim
                 .accessToken(access_token);
         AdminExchangeAccessTokenResponse exchangeAccessTokenResponse = adminApi.adminExchangeAccessToken(exchangeAccessTokenRequest, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
 
