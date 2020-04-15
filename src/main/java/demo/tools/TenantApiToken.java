@@ -4,10 +4,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Date;
 
-public class ClientApiToken {
+public class TenantApiToken {
 
-    public static ClientApiToken build(String clientId, String clientSecret) {
-        ClientApiToken token = new ClientApiToken();
+    public static TenantApiToken build(String clientId, String clientSecret) {
+        TenantApiToken token = new TenantApiToken();
         token.setX_API_TENANT_ID(clientId);
         token.setX_API_TIMESTAMP(new Date().getTime());
         String apiToken = sha1Encrypt(token.getX_API_TENANT_ID() + clientSecret + token.getX_API_TIMESTAMP());

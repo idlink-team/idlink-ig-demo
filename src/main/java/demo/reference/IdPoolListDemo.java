@@ -1,7 +1,7 @@
 package demo.reference;
 
 import com.google.gson.internal.LinkedTreeMap;
-import demo.tools.ClientApiToken;
+import demo.tools.TenantApiToken;
 import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.TenantApi;
 import idlink.ig.client.model.*;
@@ -24,7 +24,7 @@ public class IdPoolListDemo {
 
 
         //Build token
-        ClientApiToken token = ClientApiToken.build(clientId,clientSecret);
+        TenantApiToken token = TenantApiToken.build(clientId,clientSecret);
 
         String X_API_TENANT_ID = token.getX_API_TENANT_ID();
         Long X_API_TIMESTAMP = token.getX_API_TIMESTAMP();

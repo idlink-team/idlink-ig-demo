@@ -1,7 +1,7 @@
 package demo.reference;
 
 import com.google.gson.internal.LinkedTreeMap;
-import demo.tools.ClientApiToken;
+import demo.tools.TenantApiToken;
 import demo.tools.PropertiesUtils;
 import idlink.ig.client.api.TenantApi;
 import idlink.ig.client.model.AdminListIdentityPoolsResponse;
@@ -23,7 +23,7 @@ public class IdPoolResetSecretDemo {
     public static void main(String[] args) throws ApiException {
 
         //Build token
-        ClientApiToken token = ClientApiToken.build(clientId,clientSecret);
+        TenantApiToken token = TenantApiToken.build(clientId,clientSecret);
 
         String X_API_TENANT_ID = token.getX_API_TENANT_ID();
         Long X_API_TIMESTAMP = token.getX_API_TIMESTAMP();
@@ -51,7 +51,7 @@ public class IdPoolResetSecretDemo {
             //4.Pool list (expect success)
             LinkedTreeMap data = (LinkedTreeMap) adminResetPoolManagerSecretResponse.getData();
             String newSecret = (String) data.get("apiSecret");
-            ClientApiToken newToken = ClientApiToken.build(clientId,newSecret);
+            TenantApiToken newToken = TenantApiToken.build(clientId,newSecret);
 
             AdminListIdentityPoolsResponse adminListIdentitySuccess = tenantApi.adminListIdentityPools(newToken.getX_API_TENANT_ID(), newToken.getX_API_TIMESTAMP(), newToken.getX_API_TOKEN());
             System.out.println("new secret: " +adminListIdentitySuccess);

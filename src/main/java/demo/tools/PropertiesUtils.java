@@ -14,6 +14,7 @@ public class PropertiesUtils {
     public static final String apiClientId_key = "apiClientId";
     public static final String clientId_key = "clientId";
     public static final String clientIdSecret_key = "clientSecret";
+
     public static final Properties properties = new Properties();
 
     static {
@@ -38,6 +39,14 @@ public class PropertiesUtils {
     }
     public static String getClientSecret() {
         return properties.getProperty(clientIdSecret_key);
+    }
+
+    public static String getTenantSecret() {
+        return properties.getProperty("tenantSecret");
+    }
+
+    public static String getTenantId(){
+        return properties.getProperty("tenantId");
     }
 
     public static void main(String[] args) {
