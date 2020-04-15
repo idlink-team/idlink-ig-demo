@@ -13,8 +13,8 @@ public class JwtParseUtils {
             SignedJWT signedIdToken = (SignedJWT) idToken;
             JWSHeader header = signedIdToken.getHeader();
             Payload payload = signedIdToken.getPayload();
-//            System.out.println("header = " + header);
-            System.out.println("payload = " + payload);
+            System.out.println("JWT parse result: ");
+            System.out.println(payload);
         } catch (Exception e) {
             e.printStackTrace();
         }
