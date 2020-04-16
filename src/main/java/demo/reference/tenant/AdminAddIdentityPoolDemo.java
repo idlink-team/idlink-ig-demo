@@ -25,7 +25,7 @@ public class AdminAddIdentityPoolDemo {
         // Create instance
         TenantApi tenantApi = new TenantApi();
         // Add identity pool
-        AdminAddIdentityPoolRequest addIdentity = new AdminAddIdentityPoolRequest().displayName("Machine");
+        AdminAddIdentityPoolRequest addIdentity = new AdminAddIdentityPoolRequest().displayName("User");
         AdminAddIdentityPoolResponse adminAddIdentityPool = tenantApi.adminAddIdentityPool(addIdentity, token.getX_API_TENANT_ID(),
                 token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         System.out.println(adminAddIdentityPool);

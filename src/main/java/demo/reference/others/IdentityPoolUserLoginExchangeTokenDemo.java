@@ -1,4 +1,4 @@
-package demo.reference;
+package demo.reference.others;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -9,14 +9,13 @@ import idlink.ig.client.api.AdminApi;
 import idlink.ig.client.model.*;
 import io.swagger.client.ApiException;
 
-public class IdentityPoolUserLoginDemo {
+public class IdentityPoolUserLoginExchangeTokenDemo {
 
     public static String apiClientId = PropertiesUtils.getApiClientId();
     /**
      * Admin api secret
      */
     public static String apiSecret = PropertiesUtils.getApiSecret();
-
 
     public static void main(String[] args) throws ApiException {
 
@@ -49,23 +48,42 @@ public class IdentityPoolUserLoginDemo {
                 return;
             }
         }
+
         // Step 3. Login and show userInfo
         AdminInitialLoginRequest initialLoginRequest = new AdminInitialLoginRequest()
                 .putDynamicClaimItem("host","127.0.0.1")
                 .username("Tom").password("sda142&h4j2");
         AdminInitialLoginResponse adminInitialLoginResponse = adminApi.adminInitialLogin(initialLoginRequest,
                 token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
+
+        String access_token;
         if ("OK".equals(adminInitialLoginResponse.getHttpStatus())) {
             System.out.println("Login Success");
+            System.out.println(adminInitialLoginResponse.getData());
             JsonObject jsonObject = new Gson().fromJson(adminInitialLoginResponse.getData(), JsonObject.class);
-            String access_token = jsonObject.get("access_token").getAsString();
-            //show userInfo :
-            System.out.println("UserInfo : ");
+            access_token = jsonObject.get("access_token").getAsString();
+            System.out.println("login data : ");
+            JwtParseUtils.printJwt(access_token);
+        } else {
+            System.out.println(initialLoginRequest);
+            return;
+        }
+        // Step 4. exchange Token and show userInfo
+        AdminExchangeAccessTokenRequest exchangeAccessTokenRequest = new AdminExchangeAccessTokenRequest()
+                .putDynamicClaimItem("host","192.168.0.1")  //refact claim
+                .accessToken(access_token);
+        AdminExchangeAccessTokenResponse exchangeAccessTokenResponse = adminApi.adminExchangeAccessToken(exchangeAccessTokenRequest, token.getX_API_CLIENT_ID(), token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
+
+        if ("OK".equals(exchangeAccessTokenResponse.getHttpStatus())) {
+            System.out.println("Exchange Access_Token Success");
+            access_token = exchangeAccessTokenResponse.getData();
+            System.out.println("Exchange Access_Token : ");
             JwtParseUtils.printJwt(access_token);
         } else {
             System.out.println(initialLoginRequest);
         }
-        // Step 4. Delete person User "Tom"
+
+        // Step 5. Delete person User "Tom"
         AdminDeleteUserRequest adminDeleteUserRequest = new AdminDeleteUserRequest()
                 // user type should be Person
                 .username("Tom");
@@ -77,4 +95,5 @@ public class IdentityPoolUserLoginDemo {
             System.out.println(adminDeleteUserRequest);
         }
     }
+
 }

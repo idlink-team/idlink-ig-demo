@@ -1,4 +1,4 @@
-package demo.reference;
+package demo.reference.others;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

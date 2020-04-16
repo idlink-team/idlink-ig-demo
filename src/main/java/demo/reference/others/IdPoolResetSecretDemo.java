@@ -1,4 +1,4 @@
-package demo.reference;
+package demo.reference.others;
 
 import com.google.gson.internal.LinkedTreeMap;
 import demo.tools.TenantApiToken;

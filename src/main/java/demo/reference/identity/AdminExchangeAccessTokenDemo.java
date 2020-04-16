@@ -26,10 +26,9 @@ public class AdminExchangeAccessTokenDemo {
         // Create instance
         AdminApi adminApi = new AdminApi();
         // access token: get from AdminInitialLoginDemo
-        String access_token = "eyJraWQiOiJBbGV4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJBbGV4IiwiYXVkIjoiNDhmZGVkMjEtOWEwMC00Yjc0LTlkY2YtNjFjZTllYmFkNjFmIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwib3BlcmF0ZVN5c3RlbSI6IndpbmRvd3MiLCJpc3MiOiJodHRwczovL2F1dGhkZW1vLmlkLmxpbms6MTQ0MyIsImhvc3QiOiIxMjcuMC4wLjEiLCJleHAiOjE1ODcwNDczMTMsImlhdCI6MTU4NzAxODUxMywianRpIjoiNTA3MTczMmUtZjJiNS00NmE4LWFjOTktNTRkZmQwZmZlOWQxIiwiY2xpZW50X2lkIjoiNDhmZGVkMjEtOWEwMC00Yjc0LTlkY2YtNjFjZTllYmFkNjFmIiwidXNlcm5hbWUiOiJBbGV4In0.H82KFinzPpM9Quhz9-J7ndX2M0CJaOfuWR34HnmG1WVUvUG2k5HtNTr-YxQ9ctKU61XLXNeXB-eQlELGujZk5OoEy5Pu8iU0oDrFgsY1giX1hBTSwFgtWvP3aqQTrC5O0ECojR1eJrqifnxUlffLMw7pGrDlcBkzeBoPWIZjsq0";// Exchange access token
+        String access_token = "eyJraWQiOiJBbGV4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJBbGV4IiwiYXVkIjoiZjQ3NGU5MGUtYzYzMy00YzdlLWFlNjAtZWRlZDhmMzcyODBjIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwib3BlcmF0ZVN5c3RlbSI6ImxpbnV4IiwiaXNzIjoiaHR0cHM6Ly9hdXRoZGVtby5pZC5saW5rOjE0NDMiLCJob3N0IjoiMTI3LjAuMC4xMDAiLCJleHAiOjE1ODcwNTU0NzYsImlhdCI6MTU4NzAyNjY3NiwianRpIjoiZjc4ZWUwNTgtYjY4ZC00NDZlLWI2NGEtM2M4MmMyZjNmMDMwIiwiY2xpZW50X2lkIjoiZjQ3NGU5MGUtYzYzMy00YzdlLWFlNjAtZWRlZDhmMzcyODBjIiwidXNlcm5hbWUiOiJBbGV4In0.FpYEWlF-p0iBMofyF6cxfkLibNIwUuBBaKHWOnocX0O2Tz1_JI6abLdPr17kuDwk7u5-HjrYQ7sjZTk22zXWdcjZ8WlflZ5kxP17uG8DdoWzUZQdJ1dgUIMHP-GE5a99rDoYmGyxV5GtY6kWDMK6kX1Yp6PYujytBAwPulunQ_E";// Exchange access token
         AdminExchangeAccessTokenRequest exchangeAccessTokenRequest = new AdminExchangeAccessTokenRequest()
-                .putDynamicClaimItem("host","127.0.0.100")
-                .putDynamicClaimItem("operateSystem","linux")
+                .putDynamicClaimItem("scope","abc")
                 .accessToken(access_token);
         AdminExchangeAccessTokenResponse exchangeAccessTokenResponse = adminApi.adminExchangeAccessToken(exchangeAccessTokenRequest, token.getX_API_CLIENT_ID(),
                 token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());

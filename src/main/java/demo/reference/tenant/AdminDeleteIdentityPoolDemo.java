@@ -25,10 +25,10 @@ public class AdminDeleteIdentityPoolDemo {
         // Create instance
         TenantApi tenantApi = new TenantApi();
         // get from: AdminListIdentityPoolsDemo
-        String identityId = "87cb785f-0767-4f6a-aeca-c4fd7e8534e9";
+        String poolClientId = "78f62111-7b8a-4f55-aba5-879cf877efbd";
         // Delete identity pool
         AdminDeleteIdentityPoolRequest deleteIdentityPoolRequest = new AdminDeleteIdentityPoolRequest();
-        deleteIdentityPoolRequest.setIdentityId(identityId);
+        deleteIdentityPoolRequest.setIdentityId(poolClientId);
         AdminDeleteIdentityPoolResponse adminDeleteIdentityPool = tenantApi.adminDeleteIdentityPool(deleteIdentityPoolRequest, token.getX_API_TENANT_ID(),
                 token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         System.out.println(adminDeleteIdentityPool);
