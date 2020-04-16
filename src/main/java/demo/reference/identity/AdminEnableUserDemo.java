@@ -25,7 +25,7 @@ public class AdminEnableUserDemo {
         // Create instance
         AdminApi adminApi = new AdminApi();
         // Enable user
-        AdminEnableUserRequest enableUserRequest = new AdminEnableUserRequest().username("Kritios");
+        AdminEnableUserRequest enableUserRequest = new AdminEnableUserRequest().username("Alex");
         AdminEnableUserResponse enableUserResponse = adminApi.adminEnableUser(enableUserRequest, token.getX_API_CLIENT_ID(),
                 token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         System.out.println(enableUserResponse);

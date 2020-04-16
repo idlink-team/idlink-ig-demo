@@ -26,8 +26,7 @@ public class AdminExchangeAccessTokenDemo {
         // Create instance
         AdminApi adminApi = new AdminApi();
         // access token: get from AdminInitialLoginDemo
-        String access_token = "eyJraWQiOiJLcml0aW9zIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJLcml0aW9zIiwiYXVkIjoiNzgzNDYwMWEtNDNiMi00MTRkLWJiNjAtOGNlNmMzY2FiNzRmIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwib3BlcmF0ZVN5c3RlbSI6IndpbmRvd3MiLCJpc3MiOiJodHRwczovL2F1dGhkZW1vLmlkLmxpbms6MTQ0MyIsImhvc3QiOiIxMjcuMC4wLjEiLCJleHAiOjE1ODY5OTQ4MTAsImlhdCI6MTU4Njk2NjAxMCwianRpIjoiZDBhMDFhN2QtZjQ2NC00YTRlLTgwOTItZTg3NDE5Yjk1OTJkIiwiY2xpZW50X2lkIjoiNzgzNDYwMWEtNDNiMi00MTRkLWJiNjAtOGNlNmMzY2FiNzRmIiwidXNlcm5hbWUiOiJLcml0aW9zIn0.ZCeZuXvnSgQiPt0NYUIyr7JB5tniOt3qbQFLAjy5YTejB2F-1YsOssbbuw2N22r8u6ePFDWqkTqURxZ9ah1CLyfCrPMhGF1-eR1tzO9g3CEZGlWXYta84GBOoG4bm5NBT06Rz7wskVc76eODK3pxVNNioJlZiF3Yo6vUUNIG760";
-        // Exchange access token
+        String access_token = "eyJraWQiOiJBbGV4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJBbGV4IiwiYXVkIjoiNDhmZGVkMjEtOWEwMC00Yjc0LTlkY2YtNjFjZTllYmFkNjFmIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwib3BlcmF0ZVN5c3RlbSI6IndpbmRvd3MiLCJpc3MiOiJodHRwczovL2F1dGhkZW1vLmlkLmxpbms6MTQ0MyIsImhvc3QiOiIxMjcuMC4wLjEiLCJleHAiOjE1ODcwNDczMTMsImlhdCI6MTU4NzAxODUxMywianRpIjoiNTA3MTczMmUtZjJiNS00NmE4LWFjOTktNTRkZmQwZmZlOWQxIiwiY2xpZW50X2lkIjoiNDhmZGVkMjEtOWEwMC00Yjc0LTlkY2YtNjFjZTllYmFkNjFmIiwidXNlcm5hbWUiOiJBbGV4In0.H82KFinzPpM9Quhz9-J7ndX2M0CJaOfuWR34HnmG1WVUvUG2k5HtNTr-YxQ9ctKU61XLXNeXB-eQlELGujZk5OoEy5Pu8iU0oDrFgsY1giX1hBTSwFgtWvP3aqQTrC5O0ECojR1eJrqifnxUlffLMw7pGrDlcBkzeBoPWIZjsq0";// Exchange access token
         AdminExchangeAccessTokenRequest exchangeAccessTokenRequest = new AdminExchangeAccessTokenRequest()
                 .putDynamicClaimItem("host","127.0.0.100")
                 .putDynamicClaimItem("operateSystem","linux")

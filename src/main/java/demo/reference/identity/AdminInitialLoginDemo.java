@@ -31,7 +31,7 @@ public class AdminInitialLoginDemo {
         AdminInitialLoginRequest initialLoginRequest = new AdminInitialLoginRequest()
                 .putDynamicClaimItem("host","127.0.0.1")
                 .putDynamicClaimItem("operateSystem", "windows")
-                .username("Kritios").password("h4j2&sda142");
+                .username("Alex").password("sda142&h4j2");
         AdminInitialLoginResponse adminInitialLoginResponse = adminApi.adminInitialLogin(initialLoginRequest, token.getX_API_CLIENT_ID(),
                 token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         JsonObject jsonObject = new Gson().fromJson(adminInitialLoginResponse.getData(), JsonObject.class);

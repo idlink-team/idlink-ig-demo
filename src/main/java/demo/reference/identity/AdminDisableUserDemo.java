@@ -25,7 +25,7 @@ public class AdminDisableUserDemo {
         // Create instance
         AdminApi adminApi = new AdminApi();
         // Disable user
-        AdminDisableUserRequest disableUserRequest = new AdminDisableUserRequest().username("Kritios");
+        AdminDisableUserRequest disableUserRequest = new AdminDisableUserRequest().username("Alex");
         AdminDisableUserResponse disableUserResponse = adminApi.adminDisableUser(disableUserRequest, token.getX_API_CLIENT_ID(),
                 token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
         System.out.println(disableUserResponse);
