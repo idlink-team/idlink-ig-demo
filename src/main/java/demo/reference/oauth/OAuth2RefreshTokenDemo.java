@@ -13,7 +13,7 @@ import idlink.ig.client.model.AdminInitialLoginResponse;
 import idlink.ig.client.model.OAuth2LoginResponse;
 import io.swagger.client.ApiException;
 
-public class OAuth2LoginByTokenDemo {
+public class OAuth2RefreshTokenDemo {
 
     public static String apiClientId = PropertiesUtils.getApiClientId();
 
@@ -25,16 +25,20 @@ public class OAuth2LoginByTokenDemo {
     public static void main(String[] args) throws ApiException {
         String authorization = AuthApiToken.build(apiClientId, apiSecret);
         OAuth2Api oAuth2Api = new OAuth2Api();
-        String refresh_token = getRefreshToken();
-        final OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("password", "sda142&h4j2", refresh_token, "Alex", authorization);
-        JsonObject jsonObject = new Gson().fromJson(loginResponse.getData(), JsonObject.class);
-        String access_token = jsonObject.get("access_token").getAsString();
-        System.out.println("access_token: ");
-        System.out.println(access_token);
-        JwtParseUtils.printJwt(access_token);
+        String refresh_token = getOAuth2AccessToken(authorization,oAuth2Api);
+        OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("refresh_token", "", refresh_token, "", authorization);
+        System.out.println(loginResponse.getData());
+        JwtParseUtils.printJwt(loginResponse.getData());
     }
 
-    private static String getRefreshToken() throws ApiException{
+    private static String getOAuth2AccessToken(String authorization,OAuth2Api oAuth2Api) throws ApiException{
+        String refresh_token = getAdminRefreshToken();
+        OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("password", "sda142&h4j2", refresh_token, "Alex", authorization);
+        JsonObject jsonObject = new Gson().fromJson(loginResponse.getData(), JsonObject.class);
+        return jsonObject.get("refresh_token").getAsString();
+    }
+
+    private static String getAdminRefreshToken() throws ApiException{
         // api client id
         String apiClientId = PropertiesUtils.getApiClientId();
         // api secret
