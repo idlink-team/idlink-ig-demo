@@ -25,32 +25,11 @@ public class OAuth2LoginByTokenDemo {
     public static void main(String[] args) throws ApiException {
         String authorization = AuthApiToken.build(apiClientId, apiSecret);
         OAuth2Api oAuth2Api = new OAuth2Api();
-        String refresh_token = getRefreshToken();
-        final OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("password", "sda142&h4j2", refresh_token, "Alex", authorization);
+        final OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("password", "sda142&h4j2", "", "testUser", authorization);
         JsonObject jsonObject = new Gson().fromJson(loginResponse.getData(), JsonObject.class);
         String access_token = jsonObject.get("access_token").getAsString();
         System.out.println("access_token: ");
         System.out.println(access_token);
         JwtParseUtils.printJwt(access_token);
-    }
-
-    private static String getRefreshToken() throws ApiException{
-        // api client id
-        String apiClientId = PropertiesUtils.getApiClientId();
-        // api secret
-        String apiSecret = PropertiesUtils.getApiSecret();
-        // Build token before calling each api
-        AdminApiToken token = AdminApiToken.build(apiClientId, apiSecret);
-        // Create instance
-        AdminApi adminApi = new AdminApi();
-        // Initial login
-        AdminInitialLoginRequest initialLoginRequest = new AdminInitialLoginRequest()
-                .putDynamicClaimItem("host","127.0.0.1")
-                .putDynamicClaimItem("operateSystem", "windows")
-                .username("Alex").password("sda142&h4j2");
-        AdminInitialLoginResponse adminInitialLoginResponse = adminApi.adminInitialLogin(initialLoginRequest, token.getX_API_CLIENT_ID(),
-                token.getX_API_TIMESTAMP(), token.getX_API_TOKEN());
-        JsonObject jsonObject = new Gson().fromJson(adminInitialLoginResponse.getData(), JsonObject.class);
-        return jsonObject.get("access_token").getAsString();
     }
 }
