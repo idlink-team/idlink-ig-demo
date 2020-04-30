@@ -25,11 +25,12 @@ public class OAuth2LoginByTokenDemo {
     public static void main(String[] args) throws ApiException {
         String authorization = AuthApiToken.build(apiClientId, apiSecret);
         OAuth2Api oAuth2Api = new OAuth2Api();
-        final OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("password", "sda142&h4j2", "", "testUser", authorization);
+        final OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("password", "sda142&h4j2", "", "Alex", authorization);
+        System.out.println("tokens: ");
+        System.out.println(loginResponse.getData());
         JsonObject jsonObject = new Gson().fromJson(loginResponse.getData(), JsonObject.class);
         String access_token = jsonObject.get("access_token").getAsString();
         System.out.println("access_token: ");
-        System.out.println(access_token);
         JwtParseUtils.printJwt(access_token);
     }
 }
