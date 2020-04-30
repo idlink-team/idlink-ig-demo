@@ -13,7 +13,7 @@ import idlink.ig.client.model.AdminInitialLoginResponse;
 import idlink.ig.client.model.OAuth2LoginResponse;
 import io.swagger.client.ApiException;
 
-public class OAuth2LoginByTokenDemo {
+public class OAuth2LoginByPasswordDemo {
 
     public static String apiClientId = PropertiesUtils.getApiClientId();
 
