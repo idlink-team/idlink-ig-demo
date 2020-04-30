@@ -25,7 +25,7 @@ public class AdminDeleteIdentityPoolDemo {
         // Create instance
         TenantApi tenantApi = new TenantApi();
         // get from: AdminListIdentityPoolsDemo
-        String poolClientId = "78f62111-7b8a-4f55-aba5-879cf877efbd";
+        String poolClientId = "<Please put pool client id here>";
         // Delete identity pool
         AdminDeleteIdentityPoolRequest deleteIdentityPoolRequest = new AdminDeleteIdentityPoolRequest();
         deleteIdentityPoolRequest.setIdentityId(poolClientId);
