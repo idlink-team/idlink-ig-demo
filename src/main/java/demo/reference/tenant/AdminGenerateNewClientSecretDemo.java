@@ -25,7 +25,7 @@ public class AdminGenerateNewClientSecretDemo {
         // Create instance
         TenantApi tenantApi = new TenantApi();
         // get from: AdminListIdentityPoolsDemo
-        String identityId = "87b5af73-c4bc-4aea-91c5-508394d14717";
+        String identityId = "<Please put pool client id here>";
         // Generate new client secret
         AdminGenerateNewClientSecretRequest generateNewClientSecretRequest = new AdminGenerateNewClientSecretRequest();
         generateNewClientSecretRequest.setIdentityId(identityId);
