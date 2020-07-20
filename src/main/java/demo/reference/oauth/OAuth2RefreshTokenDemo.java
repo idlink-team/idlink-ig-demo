@@ -28,7 +28,8 @@ public class OAuth2RefreshTokenDemo {
         String refresh_token = getOAuth2AccessToken(authorization,oAuth2Api);
         OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2Token("refresh_token", "", refresh_token, "", authorization);
         System.out.println(loginResponse.getData());
-        JwtParseUtils.printJwt(loginResponse.getData());
+        JsonObject jsonObject = new Gson().fromJson(loginResponse.getData(), JsonObject.class);
+        JwtParseUtils.printJwt(jsonObject.get("access_token").getAsString());
     }
 
     private static String getOAuth2AccessToken(String authorization,OAuth2Api oAuth2Api) throws ApiException{
