@@ -1,7 +1,9 @@
 package demo.reference.oauth;
 
-import demo.tools.GetUtils;
+import demo.tools.AuthApiToken;
 import demo.tools.PropertiesUtils;
+import idlink.ig.client.api.OAuth2Api;
+import idlink.ig.client.model.OAuth2GetReqCodeResponse;
 import io.swagger.client.ApiException;
 
 import java.io.IOException;
@@ -16,7 +18,11 @@ public class OAuth2GetReqCodeForAliDemo {
      * get ReqCode For Ali TMALL By OAuth2
      */
     public static void main(String[] args) throws ApiException, IOException {
-        String result = GetUtils.get("https://api.ig.id.link:1443/oauth2/authorize/codeOnly?response_type=code&client_id=" + apiClientId + "&redirect_uri=your_url&state=123");
-        System.out.println("result = " + result);
+        String authorization = AuthApiToken.build(apiClientId, apiSecret);
+        OAuth2Api oAuth2Api = new OAuth2Api();
+        OAuth2GetReqCodeResponse response = oAuth2Api.oAuth2AuthorizeGetCode("your_url", "state", authorization);
+
+        System.out.println("result status = " + response.getHttpStatus());
+        System.out.println("result = " + response.getData());
     }
 }
