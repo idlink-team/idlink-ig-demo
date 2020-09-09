@@ -62,7 +62,7 @@ public class OAuth2LoginForTMallDemo {
         // Create instance
         TenantApi tenantApi = new TenantApi();
         // get from: AdminListIdentityPoolsDemo
-        String identityId = "f474e90e-c633-4c7e-ae60-eded8f37280c";
+        String identityId = apiClientId;
         // Get client by poolId
         AdminGetClientByPoolIdRequest getClientByPoolIdRequest = new AdminGetClientByPoolIdRequest();
         getClientByPoolIdRequest.setIdentityId(identityId);
