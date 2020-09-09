@@ -48,8 +48,8 @@ public class OAuth2LoginForTMallDemo {
         authorization = AuthApiToken.build(apiClientId, tmallOauth2Secret());
         final OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2TokenByCode("authorization_code", "Alex", "sda142&h4j2", authCode,"", authorization);
         System.out.println("tokens: ");
-        System.out.println(loginResponse.getDetail());
-        JsonObject jsonObject = new Gson().fromJson(loginResponse.getDetail(), JsonObject.class);
+        System.out.println(loginResponse.getData());
+        JsonObject jsonObject = new Gson().fromJson(loginResponse.getData(), JsonObject.class);
         String access_token = jsonObject.get("access_token").getAsString();
         System.out.println("access_token: ");
         JwtParseUtils.printJwt(access_token);
