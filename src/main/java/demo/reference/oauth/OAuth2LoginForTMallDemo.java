@@ -1,7 +1,6 @@
 package demo.reference.oauth;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import demo.tools.AuthApiToken;
 import demo.tools.JwtParseUtils;
 import demo.tools.PropertiesUtils;
@@ -46,14 +45,36 @@ public class OAuth2LoginForTMallDemo {
 
         //Step 3
         authorization = AuthApiToken.build(apiClientId, tmallOauth2Secret());
-        final OAuth2LoginResponse loginResponse = oAuth2Api.oAuth2TokenByCode("authorization_code", "Alex", "sda142&h4j2", authCode,"", authorization);
-        System.out.println("tokens: ");
-        System.out.println(loginResponse.getData());
-        JsonObject jsonObject = new Gson().fromJson(loginResponse.getData(), JsonObject.class);
-        String access_token = jsonObject.get("access_token").getAsString();
-        System.out.println("access_token: ");
-        JwtParseUtils.printJwt(access_token);
+        String loginResponse = oAuth2Api.oAuth2TmallToken(authCode,"authorization_code",  "", authorization+"123");
+        System.out.println("response = " + loginResponse);
 
+//        printChildreResult(loginResponse);
+
+    }
+
+    private static void printChildreResult(String loginResponse) {
+        System.out.println("====================================================");
+        Map response = new Gson().fromJson(loginResponse, Map.class);
+        String access_token = (String) response.get("access_token");
+        if (access_token == null) {
+            String httpStatus = (String) response.get("httpStatus");
+            String detail = (String) response.get("detail");
+            String error = (String) response.get("error");
+            String error_description = (String) response.get("error_description");
+
+            System.out.println("httpStatus = " + httpStatus);
+            System.out.println("detail = " + detail);
+            System.out.println("error = " + error);
+            System.out.println("error_description = " + error_description);
+        } else {
+            String refresh_token = (String) response.get("refresh_token");
+            Object expires_in = response.get("expires_in");
+            System.out.println("tokens: ");
+            System.out.println("access_token = " + access_token);
+            System.out.println("refresh_token = " + refresh_token);
+            System.out.println("expires_in = " + expires_in);
+            JwtParseUtils.printJwt(access_token);
+        }
     }
 
     private static String tmallOauth2Secret() throws ApiException {
