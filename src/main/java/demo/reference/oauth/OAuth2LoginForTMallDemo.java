@@ -45,7 +45,7 @@ public class OAuth2LoginForTMallDemo {
 
         //Step 3
         authorization = AuthApiToken.build(apiClientId, tmallOauth2Secret());
-        String loginResponse = oAuth2Api.oAuth2TmallToken(authCode,"authorization_code",  "", authorization+"123");
+        String loginResponse = oAuth2Api.oAuth2TmallToken(authCode,"authorization_code",  "", authorization);
         System.out.println("response = " + loginResponse);
 
 //        printChildreResult(loginResponse);
